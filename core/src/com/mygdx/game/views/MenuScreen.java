@@ -59,7 +59,8 @@ public class MenuScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
 
-                game.changeScreen(MyGame.APPLICATION);
+                game.changeScreen(MyGame.MAIN);
+                dispose();
 
             }
         });
@@ -69,6 +70,7 @@ public class MenuScreen implements Screen {
             public void changed(ChangeEvent event, Actor actor) {
 
                 game.changeScreen(MyGame.PREFERENCES);
+                dispose();
 
             }
         });
