@@ -8,44 +8,58 @@ public class B2dModel {
     private Body bodyDynamic;
     private Body bodyStatic;
     private Body bodyKinetic;
+    private Body player;
+    private Body water;
+    public boolean isSwimming = false;
     public B2dModel(){
         world = new World(new Vector2(0,-10f),true);
-        createFloor();
-        createObject();
-        createMovingObject();
+        world.setContactListener(new B2dCollisionDetection(this));
+//        createFloor();
+//        createObject();
+//        createMovingObject();
 
         //Get out body factory singleton and store it in a bodyFactory
         BodyFactory bodyFactory = BodyFactory.getInstance(world);
 
         //add a new rubber ball at postion 1,1
-        bodyFactory.makeCirclePolyBody(1,1,2,BodyFactory.RUBBER, BodyDef.BodyType.DynamicBody,false);
+//        bodyFactory.makeCirclePolyBody(1,1,2,BodyFactory.RUBBER, BodyDef.BodyType.DynamicBody,false);
 
         //add a new steel bal at postion 4,1
-        bodyFactory.makeCirclePolyBody(4,1,2,BodyFactory.STEEL, BodyDef.BodyType.DynamicBody,false);
+//        bodyFactory.makeCirclePolyBody(4,1,2,BodyFactory.STEEL, BodyDef.BodyType.DynamicBody,false);
 
         //add a anew stona at position -4,1
-        bodyFactory.makeCirclePolyBody(-4,1,2,BodyFactory.STONE, BodyDef.BodyType.DynamicBody,false);
+//        bodyFactory.makeCirclePolyBody(-4,1,2,BodyFactory.STONE, BodyDef.BodyType.DynamicBody,false);
         //pentagon
-        Vector2[] vert = new Vector2[]{
-                new Vector2(1,5),
-                new Vector2(0,2),
-                new Vector2(2.5f,0),
-                new Vector2(5,2),
-        };
+//        Vector2[] vert = new Vector2[]{
+//                new Vector2(1,5),
+//                new Vector2(0,2),
+//                new Vector2(2.5f,0),
+//                new Vector2(5,2),
+//        };
         //trapez
-        Vector2[] vert2 = new Vector2[]{
-                new Vector2(1,5),
-                new Vector2(2,2),
-                new Vector2(4,2),
-                new Vector2(5,5)
-        };
+//        Vector2[] vert2 = new Vector2[]{
+//                new Vector2(1,5),
+//                new Vector2(2,2),
+//                new Vector2(4,2),
+//                new Vector2(5,5)
+//        };
 
-        bodyFactory.makePolygonShapeBody(vert, -8,1,BodyFactory.STONE, BodyDef.BodyType.DynamicBody);
-        bodyFactory.makePolygonShapeBody(vert2, -8,1,BodyFactory.STONE, BodyDef.BodyType.DynamicBody);
+//        bodyFactory.makePolygonShapeBody(vert, -8,1,BodyFactory.STONE, BodyDef.BodyType.DynamicBody);
+//        bodyFactory.makePolygonShapeBody(vert2, -8,1,BodyFactory.STONE, BodyDef.BodyType.DynamicBody);
+        player = bodyFactory.makeBoxPolyBody(1,1,2,2,BodyFactory.RUBBER, BodyDef.BodyType.DynamicBody,false);
+
+        water = bodyFactory.makeBoxPolyBody(1,-8,40,4,BodyFactory.RUBBER, BodyDef.BodyType.StaticBody, false);
+        water.setUserData("IAMTHESEA");
+
+        bodyFactory.makeAllFixturesSensors(water);
+
 
 
     }
     public void logicStep(float delta){
+        if(isSwimming){
+            player.applyForceToCenter(0,50,true);
+        }
         world.step(delta, 3,3);
     }
     //dynamic body
