@@ -5,9 +5,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.*;
-import com.mygdx.game.Map.B2dModel;
+import com.mygdx.game.bodies.B2dModel;
 import com.mygdx.game.MyGame;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 public class MainScreen implements Screen {
     private MyGame parent;
