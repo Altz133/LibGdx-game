@@ -1,29 +1,41 @@
 package com.mygdx.game.bodies;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.controller.KeyboardController;
+import com.mygdx.game.loader.B2dAssetManager;
 
 public class B2dModel {
     public World world;
     private Body bodyDynamic;
     private Body bodyStatic;
     private Body bodyKinetic;
-    private Body player;
+    public Body player;
     private Body water;
     private KeyboardController controller;
     private OrthographicCamera camera;
+    private B2dAssetManager assMan;
+
+    private Sound ping;
+    private Sound boing;
+    public static final int BOING_SOUND = 0;
+    public static final int PING_SOUND = 1;
     Vector3 mousePos = new Vector3();
+
+
     public boolean isSwimming = false;
-    public B2dModel(KeyboardController cont, OrthographicCamera cam){
+    public B2dModel(KeyboardController cont, OrthographicCamera cam, B2dAssetManager assetManager){
+        assMan = assetManager;
         controller = cont;
         camera = cam;
         world = new World(new Vector2(0,-10f),true);
         world.setContactListener(new B2dCollisionDetection(this));
 
-       createFloor();
+        createFloor();
 //        createObject();
 //        createMovingObject();
 
@@ -55,6 +67,18 @@ public class B2dModel {
 
 //        bodyFactory.makePolygonShapeBody(vert, -8,1,BodyFactory.STONE, BodyDef.BodyType.DynamicBody);
 //        bodyFactory.makePolygonShapeBody(vert2, -8,1,BodyFactory.STONE, BodyDef.BodyType.DynamicBody);
+        assMan.queueAddSounds();
+
+        assMan.manager.finishLoading();
+
+//        ping = assMan.ping2Sound;
+//
+//        boing = assMan.boing2Sound;
+        //imho bad practice
+        //code repetition - should use SoundLoader
+        ping = assMan.manager.get("sounds/ping.wav", Sound.class);
+        boing =assMan.manager.get("sounds/boing.wav",Sound.class);
+
         player = bodyFactory.makeBoxPolyBody(1,1,2,2,BodyFactory.RUBBER, BodyDef.BodyType.DynamicBody,false);
 
         water = bodyFactory.makeBoxPolyBody(1,-8,40,8,BodyFactory.RUBBER, BodyDef.BodyType.StaticBody, false);
@@ -72,6 +96,16 @@ public class B2dModel {
             return true;
         }
         return false;
+    }
+    public void playSound(int sound){
+        switch(sound) {
+            case BOING_SOUND:
+                boing.play();
+                break;
+            case PING_SOUND:
+                ping.play();
+                break;
+        }
     }
     public void logicStep(float delta){
 

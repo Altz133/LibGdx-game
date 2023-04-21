@@ -32,7 +32,8 @@ public class B2dCollisionDetection implements ContactListener{
     }
     private void shootUpInAir(Fixture staticFixture, Fixture otherFixture){
         System.out.println("Adding force");
-        otherFixture.getBody().applyForceToCenter(new Vector2(-10,1000),true);
+        otherFixture.getBody().applyForceToCenter(new Vector2(-1000,-1000),true);
+        parent.playSound(B2dModel.BOING_SOUND);
     }
 
     @Override

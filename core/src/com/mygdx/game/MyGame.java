@@ -3,15 +3,18 @@ package com.mygdx.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.mygdx.game.loader.B2dAssetManager;
 import com.mygdx.game.views.*;
 
 import java.awt.*;
+
 
 
 public class MyGame extends Game {
@@ -20,22 +23,19 @@ public class MyGame extends Game {
 	private MenuScreen menuScreen;
 	private MainScreen mainScreen;
 	private EndScreen endScreen;
-
 	public SpriteBatch batch;
 	public BitmapFont font;
-
 	public final static int MENU = 0;
 	public final static int PREFERENCES = 1;
-
 	public final static int MAIN = 2;
 	public final static int ENDGAME = 3;
-
 	public final static int LOADING= 5;
 	private OrthographicCamera camera;
 	private AppPreferences preferences;
+	private Music playingSong;
 
+	public B2dAssetManager assMan = new B2dAssetManager();
 
-	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -48,10 +48,17 @@ public class MyGame extends Game {
 		mainScreen = new MainScreen(this);
 		menuScreen = new MenuScreen(this);
 		changeScreen(LOADING);
+		assMan.queueAddMusic();
+		assMan.manager.finishLoading();
+		//RoleMusic by https://freemusicarchive.org/music/Rolemusic/~/mixdown
+		playingSong = assMan.manager.get("music/Rolemusic.mp3");
+		playingSong.play();
+		playingSong.setLooping(true);
 	}
 
 	@Override
 	public void render () {
+		playingSong.setVolume(preferences.getMusicVolume());
 		super.render();
 	}
 	
@@ -87,11 +94,14 @@ public class MyGame extends Game {
 
 	@Override
 	public void dispose () {
+		playingSong.dispose();
+		assMan.manager.dispose();
 		batch.dispose();
 		loadingScreen.dispose();
 		preferencesScreen.dispose();
 		menuScreen.dispose();
 		mainScreen.dispose();
 		endScreen.dispose();
+
 	}
 }

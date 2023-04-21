@@ -29,7 +29,10 @@ public class MenuScreen implements Screen {
     @Override
     @SuppressWarnings("Duplicates")
     public void show() {
-        skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
+        game.assMan.queueAddSkin();
+        game.assMan.manager.finishLoading();
+        //imho bad practices again, DRY principle violation
+        skin = game.assMan.manager.get("skin/glassy-ui.json");
         stage = new Stage(new ScreenViewport(),game.batch);
         Gdx.input.setInputProcessor(stage);
         Table table = new Table();
