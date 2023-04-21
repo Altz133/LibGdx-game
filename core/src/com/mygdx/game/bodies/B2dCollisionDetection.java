@@ -32,12 +32,12 @@ public class B2dCollisionDetection implements ContactListener{
     }
     private void shootUpInAir(Fixture staticFixture, Fixture otherFixture){
         System.out.println("Adding force");
-        otherFixture.getBody().applyForceToCenter(new Vector2(-10,2000),true);
+        otherFixture.getBody().applyForceToCenter(new Vector2(-10,1000),true);
     }
 
     @Override
     public void endContact(Contact contact) {
-        System.out.println("Contact");
+        System.out.println("End of Contact");
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
         if(fa.getBody().getUserData() =="IAMTHESEA"){
