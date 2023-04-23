@@ -1,0 +1,132 @@
+
+loading.png
+size: 2048, 512
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+copyright
+  rotate: false
+  xy: 2, 47
+  size: 182, 45
+  orig: 182, 45
+  offset: 0, 0
+  index: -1
+flamebackground
+  rotate: false
+  xy: 1214, 138
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+flames
+  rotate: false
+  xy: 2, 94
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 7
+flames
+  rotate: false
+  xy: 204, 94
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 11
+flames
+  rotate: false
+  xy: 406, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 4
+flames
+  rotate: false
+  xy: 608, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 9
+flames
+  rotate: false
+  xy: 810, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 13
+flames
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 1
+flames
+  rotate: false
+  xy: 1214, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 6
+flames
+  rotate: false
+  xy: 1416, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 10
+flames
+  rotate: false
+  xy: 1618, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 3
+flames
+  rotate: false
+  xy: 1820, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 15
+flames
+  rotate: false
+  xy: 406, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 8
+flames
+  rotate: false
+  xy: 608, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 12
+flames
+  rotate: false
+  xy: 810, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 5
+flames
+  rotate: false
+  xy: 1012, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 2
+loading-dash
+  rotate: false
+  xy: 363, 372
+  size: 39, 32
+  orig: 39, 32
+  offset: 0, 0
+  index: -1
+staying-alight-logo
+  rotate: false
+  xy: 2, 296
+  size: 359, 108
+  orig: 359, 108
+  offset: 0, 0
+  index: -1

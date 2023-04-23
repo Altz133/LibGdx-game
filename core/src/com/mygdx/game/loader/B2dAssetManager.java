@@ -8,23 +8,30 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class B2dAssetManager{
     public final AssetManager manager = new AssetManager();
 
-    //textures
-    public final String playerImage = "images/player.png";
-    public final String enemyImage ="images/enemy.png";
     public String pingSound = "sounds/ping.wav";
 //    public Sound ping2Sound;
 //    public Sound boing2Sound;
 public final String playingSong = "music/Rolemusic.mp3";
     public String boingSound ="sounds/boing.wav";
     public final String skin = "skin/glassy-ui.json";
+
+    public final String gameImages = "images/game.atlas";
+    public final String loadingImages = "images/loading.atlas";
+
+
     public void queueAddImages(){
-        manager.load(playerImage, Texture.class);
-        manager.load(enemyImage,Texture.class);
+
+        manager.load(gameImages, TextureAtlas.class);
+
+    }
+    public void queueAddLoadingImages(){
+        manager.load(loadingImages, TextureAtlas.class);
     }
     public void queueAddSounds(){
         manager.load(pingSound, Sound.class);
@@ -40,5 +47,11 @@ public final String playingSong = "music/Rolemusic.mp3";
     public void queueAddSkin(){
         SkinParameter params = new SkinParameter("skin/glassy-ui.atlas");
         manager.load(skin, Skin.class,params);
+    }
+    public void queueAddFonts(){
+
+    }
+    public void queueAddParticleEffects(){
+
     }
 }
