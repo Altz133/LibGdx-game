@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import com.mygdx.game.MyGame;
@@ -22,6 +23,8 @@ public class MenuScreen implements Screen {
     protected Skin skin;
     private TextureAtlas atlas;
     private Stage stage;
+    private TextureAtlas.AtlasRegion background;
+
     public MenuScreen(MyGame myGame) {
         this.game = myGame;
     }
@@ -50,6 +53,11 @@ public class MenuScreen implements Screen {
         table.add(preferences).fillX().uniformX();
         table.row();
         table.add(exit).fillX().uniformX();
+        skin = game.assMan.manager.get("skin/glassy-ui.json");
+        atlas = game.assMan.manager.get("images/loading.atlas");
+        background = atlas.findRegion("flamebackground");
+
+        table.setBackground(new TiledDrawable(background));
 
         exit.addListener(new ChangeListener() {
             @Override
